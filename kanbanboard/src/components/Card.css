@@ -1,0 +1,42 @@
+
+.card{
+    background: #fff;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.9rem !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 0.8rem;
+}
+.card >div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card >div:last-child{
+    justify-content: start;
+}
+.card>div:last-child img {
+    height: 1rem;
+}
+.card >div:last-child span img{
+    margin: 0 0.2rem 0 0.5rem;
+    height: 0.7rem;
+}
+.card >div img{
+    height: 1.5rem;
+}
+
+.card >div span{
+    display: flex;
+    align-items: center;
+}
+.card >div span img{
+    height: 0.8rem;
+}
+.card > div p{
+    margin: 0;
+}
+.card h2{
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
