@@ -1,42 +1,54 @@
-
 .card{
-    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 6rem;
+    background: var(--white-color);
     padding: 1rem;
     margin: 0.5rem 0;
-    font-size: 0.9rem !important;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 0.8rem;
+    border-radius: 0.7rem;
 }
-.card >div {
+.card-top, .card-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.card >div:last-child{
+.card-bottom{
     justify-content: start;
 }
-.card>div:last-child img {
-    height: 1rem;
+
+.card-top p{
+    margin: 0;
+    color: var(--id-color);
 }
-.card >div:last-child span img{
-    margin: 0 0.2rem 0 0.5rem;
-    height: 0.7rem;
-}
-.card >div img{
-    height: 1.5rem;
+.card-top img{
+    width: 1.3rem;
 }
 
-.card >div span{
+.card-heading {
+    margin: 0.5rem 0 0.8rem;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    color: var(--title-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.card-bottom img {
+    width: 1rem;
+}
+.card-bottom p{
     display: flex;
     align-items: center;
-}
-.card >div span img{
-    height: 0.8rem;
-}
-.card > div p{
     margin: 0;
+    color: var(--tag-color);
 }
-.card h2{
-    margin: 0.5rem 0;
-    font-weight: 500;
+.card-bottom p img{
+    margin: 0 0.2rem 0 0.5rem;
+    width: 0.6rem;
 }

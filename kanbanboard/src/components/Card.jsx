@@ -1,20 +1,20 @@
 import React from "react";
 import "./Card.css";
 
-const Card = () => {
+const Card = ({ ticket, isUserSort }) => {
   return (
     <div className="card">
-      <div>
-        <p>CAM-3</p>
-        <img src="./images/profile.png" alt="profile" />
+      <div className="card-top">
+        <p>{ticket.id}</p>
+        {!isUserSort && <img src="./images/profile.png" alt="profile" />}
       </div>
-      <h2>Optimize Database Queries for Performance</h2>
-      <div>
+      <h2 className="card-heading">{ticket.title}</h2>
+      <div className="card-bottom">
         <img src="./images/menudot.png" alt="menu" />
-        <span>
+        <p>
           <img src="./images/dot-grey.png" alt="status" />
-          Feature Request
-        </span>
+          <span>{ticket.tag[0] + " (" + ticket.priority + ")"}</span>
+        </p>
       </div>
     </div>
   );
