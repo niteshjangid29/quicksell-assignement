@@ -1,7 +1,8 @@
 import "./App.css";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./components/Card";
 import { statuses, priorities } from "./components/data";
+import Loader from "./components/Loader";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -92,155 +93,85 @@ function App() {
   }, [grouping, sorting, tickets, users]);
 
   return (
-    <Fragment>
+    <div className="container">
+      <div className="navbar">
+        <button
+          className="btn"
+          onClick={() => {
+            setIsVisible(!isVisible);
+          }}
+        >
+          <img src="./images/menu.svg" alt="menu" />
+          Display
+          <img src="./images/downarrow.png" alt="down arrow" />
+        </button>
+        {isVisible && (
+          <div className="dropdown">
+            <div>
+              Grouping{" "}
+              <select value={grouping} onChange={handleGroupingChange}>
+                <option value="status">Status</option>
+                <option value="userId">User</option>
+                <option value="priority">Priority</option>
+              </select>
+            </div>
+            <div>
+              Ordering
+              <select value={sorting} onChange={handleSortingChange}>
+                <option value="priority">Priority</option>
+                <option value="title">Title</option>
+              </select>
+            </div>
+          </div>
+        )}
+      </div>
+
       {loading ? (
-        <h1>Loading</h1>
+        <Loader />
       ) : (
-        <div className="container">
-          <div className="navbar">
-            <button
-              className="btn"
-              onClick={() => {
-                setIsVisible(!isVisible);
-              }}
-            >
-              <img src="./images/menu.svg" alt="menu" />
-              Display
-              <img src="./images/downarrow.png" alt="down arrow" />
-            </button>
-            {isVisible && (
-              <div className="dropdown">
-                <div>
-                  Grouping{" "}
-                  <select value={grouping} onChange={handleGroupingChange}>
-                    <option value="status">Status</option>
-                    <option value="userId">User</option>
-                    <option value="priority">Priority</option>
-                  </select>
-                </div>
-                <div>
-                  Ordering
-                  <select value={sorting} onChange={handleSortingChange}>
-                    <option value="priority">Priority</option>
-                    <option value="title">Title</option>
-                  </select>
-                </div>
-              </div>
-            )}
-          </div>
+        <div className="container-box">
+          {columnHeaders.map((column) => {
+            const columnKey = grouping === "status" ? column.name : column.id;
+            const columnHeading = column.name;
+            const columnTickets = sortedTickets[columnKey] || [];
+            const len = columnTickets.length;
 
-          <div className="container-box">
-            {columnHeaders.map((column) => {
-              const columnKey = grouping === "status" ? column.name : column.id;
-              const columnHeading = column.name;
-              const columnTickets = sortedTickets[columnKey] || [];
-              const len = columnTickets.length;
-
-              return (
-                <div className="section" key={columnKey}>
-                  <div className="section-heading">
-                    <div className="section-heading-left">
-                      <img
-                        src={
-                          grouping === "userId"
-                            ? "./images/profile.png"
-                            : column.iconUrl
-                        }
-                        alt="profile"
-                      />
-                      <p>{columnHeading}</p>
-                      <span>{len}</span>
-                    </div>
-                    <div className="section-heading-right">
-                      <img src="./images/plus.png" alt="plus" />
-                      <img src="./images/menudot.png" alt="menu-dot" />
-                    </div>
+            return (
+              <div className="section" key={columnKey}>
+                <div className="section-heading">
+                  <div className="section-heading-left">
+                    <img
+                      src={
+                        grouping === "userId"
+                          ? "./images/profile.png"
+                          : column.iconUrl
+                      }
+                      alt="profile"
+                    />
+                    <p>{columnHeading}</p>
+                    <span>{len}</span>
                   </div>
+                  <div className="section-heading-right">
+                    <img src="./images/plus.png" alt="plus" />
+                    <img src="./images/menudot.png" alt="menu-dot" />
+                  </div>
+                </div>
 
-                  {columnTickets.map((ticket, ind) => {
-                    return (
-                      <Card
-                        ticket={ticket}
-                        isUserSort={grouping === "userId"}
-                        key={ind}
-                      />
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* <div className="container-box">
-            <div className="section">
-              <div className="section-heading">
-                <div className="section-heading-left">
-                  <img src="./images/profile.png" alt="profile" />
-                  <p>columnHeading1</p>
-                  <span>len</span>
-                </div>
-                <div className="section-heading-right">
-                  <img src="./images/plus.png" alt="plus" />
-                  <img src="./images/menudot.png" alt="menu-dot" />
-                </div>
+                {columnTickets.map((ticket, ind) => {
+                  return (
+                    <Card
+                      ticket={ticket}
+                      isUserSort={grouping === "userId"}
+                      key={ind}
+                    />
+                  );
+                })}
               </div>
-            </div>
-            <div className="section">
-              <div className="section-heading">
-                <div className="section-heading-left">
-                  <img src="./images/profile.png" alt="profile" />
-                  <p>columnHeading2</p>
-                  <span>len</span>
-                </div>
-                <div className="section-heading-right">
-                  <img src="./images/plus.png" alt="plus" />
-                  <img src="./images/menudot.png" alt="menu-dot" />
-                </div>
-              </div>
-            </div>
-            <div className="section">
-              <div className="section-heading">
-                <div className="section-heading-left">
-                  <img src="./images/profile.png" alt="profile" />
-                  <p>columnHeading3</p>
-                  <span>len</span>
-                </div>
-                <div className="section-heading-right">
-                  <img src="./images/plus.png" alt="plus" />
-                  <img src="./images/menudot.png" alt="menu-dot" />
-                </div>
-              </div>
-            </div>
-            <div className="section">
-              <div className="section-heading">
-                <div className="section-heading-left">
-                  <img src="./images/profile.png" alt="profile" />
-                  <p>columnHeading4</p>
-                  <span>len</span>
-                </div>
-                <div className="section-heading-right">
-                  <img src="./images/plus.png" alt="plus" />
-                  <img src="./images/menudot.png" alt="menu-dot" />
-                </div>
-              </div>
-            </div>
-            <div className="section">
-              <div className="section-heading">
-                <div className="section-heading-left">
-                  <img src="./images/profile.png" alt="profile" />
-                  <p>columnHeading5</p>
-                  <span>len</span>
-                </div>
-                <div className="section-heading-right">
-                  <img src="./images/plus.png" alt="plus" />
-                  <img src="./images/menudot.png" alt="menu-dot" />
-                </div>
-              </div>
-            </div>
-          </div> */}
+            );
+          })}
         </div>
       )}
-    </Fragment>
+    </div>
   );
 }
 
