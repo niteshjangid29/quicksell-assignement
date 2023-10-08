@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Card from "./components/Card";
 import { statuses, priorities } from "./components/data";
 import Loader from "./components/Loader";
@@ -140,14 +140,24 @@ function App() {
               <div className="section" key={columnKey}>
                 <div className="section-heading">
                   <div className="section-heading-left">
-                    <img
+                    {/* <img
                       src={
                         grouping === "userId"
                           ? "./images/profile.png"
                           : column.iconUrl
                       }
                       alt="profile"
-                    />
+                    /> */}
+                    <div className="profile">
+                      {grouping === "userId" ? (
+                        <Fragment>
+                          <img src="./images/profile.png" alt="profile" />
+                          <span className="user-available"></span>
+                        </Fragment>
+                      ) : (
+                        <img src={column.iconUrl} alt="profile" />
+                      )}
+                    </div>
                     <h3>{columnHeading}</h3>
                     <span>{len}</span>
                   </div>
@@ -158,7 +168,14 @@ function App() {
                 </div>
 
                 {columnTickets.map((ticket, ind) => {
-                  return <Card ticket={ticket} grouping={grouping} key={ind} />;
+                  return (
+                    <Card
+                      ticket={ticket}
+                      users={users}
+                      grouping={grouping}
+                      key={ind}
+                    />
+                  );
                 })}
               </div>
             );

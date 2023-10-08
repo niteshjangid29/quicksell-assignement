@@ -22,8 +22,25 @@
     margin: 0;
     color: var(--id-color);
 }
-.card-top img{
+.profile{
+    position: relative;
+}
+.profile img{
     width: 1.3rem;
+}
+.profile span{
+    position: absolute;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+    background: var(--grey-color);
+    border: 1px solid var(--white-color);
+}
+.user-available{
+    background: var(--green-color) !important;
 }
 
 .card-middle{

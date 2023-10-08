@@ -193,11 +193,13 @@
   margin-left: 0.4rem;
 }
 
-.section-heading-left img {
+/* .section-heading-left img {
   width: 1.5rem;
   border-radius: 50%;
-  /* margin: 0 0.2rem 0; */
   margin:0 0.5rem 0 0.2rem;
+} */
+.section-heading-left .profile{
+  margin: 0 0.6rem 0 0.2rem;
 }
 
 .section-heading-right {

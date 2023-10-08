@@ -3,13 +3,20 @@ import "./Card.css";
 import { priorities } from "./data";
 import { statusMap } from "./data";
 
-const Card = ({ ticket, grouping }) => {
+const Card = ({ ticket, grouping, users }) => {
+  const userStatus = users.find((user) => user.id === ticket.userId);
+
   return (
     <div className="card">
       <div className="card-top">
         <p>{ticket.id}</p>
         {grouping !== "userId" && (
-          <img src="./images/profile.png" alt="profile" />
+          <div className="profile">
+            <img src="./images/profile.png" alt="profile" />
+            <span
+              className={userStatus.available ? "user-available" : ""}
+            ></span>
+          </div>
         )}
       </div>
       <div className="card-middle">
