@@ -22,6 +22,14 @@ export const statuses = [
     },
 ]
 
+export const statusMap = {
+    "Backlog" : "./images/backlog.png",
+    "Todo" : "./images/todo.png",
+    "In progress" : "./images/progress.png",
+    "Done" : "./images/done.png",
+    "Cancelled" : "./images/cancel.png",
+}
+
 export const priorities = [
     {
         id : 0,

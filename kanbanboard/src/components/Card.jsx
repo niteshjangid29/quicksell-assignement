@@ -1,6 +1,7 @@
 import React from "react";
 import "./Card.css";
 import { priorities } from "./data";
+import { statusMap } from "./data";
 
 const Card = ({ ticket, grouping }) => {
   return (
@@ -11,7 +12,10 @@ const Card = ({ ticket, grouping }) => {
           <img src="./images/profile.png" alt="profile" />
         )}
       </div>
-      <h2 className="card-heading">{ticket.title}</h2>
+      <div className="card-middle">
+        {grouping !== "status" && <img src={statusMap[ticket.status]} alt="" />}
+        <h2 className="card-heading">{ticket.title + ticket.status}</h2>
+      </div>
       <div className="card-bottom">
         {grouping !== "priority" && (
           <img src={priorities[ticket.priority].iconUrl} alt="menu" />

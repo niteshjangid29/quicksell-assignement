@@ -6,7 +6,7 @@
     background: var(--white-color);
     padding: 1rem;
     margin: 0.5rem 0;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 2px;
     border-radius: 0.7rem;
 }
 .card-top, .card-bottom {
@@ -26,8 +26,19 @@
     width: 1.3rem;
 }
 
+.card-middle{
+    display: flex;
+    padding: 0.5rem 0 0.8rem;
+}
+.card-middle img{
+    width: 0.8rem;
+    height: 0.8rem;
+    margin: 0.2rem 0.3rem 0 0;
+    /* background: red; */
+}
+
 .card-heading {
-    margin: 0.5rem 0 0.8rem;
+    margin: 0;
     font-weight: 500;
     font-size: 1rem;
     line-height: 1.3rem;
@@ -52,7 +63,7 @@
     overflow: hidden;
 }
 .card-bottom p img{
-    margin-right: 0.2rem;
+    margin-right: 0.5rem;
     width: 0.6rem;
 }
 .card-bottom p span{
