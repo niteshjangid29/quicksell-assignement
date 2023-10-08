@@ -1,19 +1,26 @@
 import React from "react";
 import "./Card.css";
+import { priorities } from "./data";
 
-const Card = ({ ticket, isUserSort }) => {
+const Card = ({ ticket, grouping }) => {
   return (
     <div className="card">
       <div className="card-top">
         <p>{ticket.id}</p>
-        {!isUserSort && <img src="./images/profile.png" alt="profile" />}
+        {grouping !== "userId" && (
+          <img src="./images/profile.png" alt="profile" />
+        )}
       </div>
       <h2 className="card-heading">{ticket.title}</h2>
       <div className="card-bottom">
-        <img src="./images/menudot.png" alt="menu" />
+        {grouping !== "priority" && (
+          <img src={priorities[ticket.priority].iconUrl} alt="menu" />
+        )}
         <p>
           <img src="./images/dot-grey.png" alt="status" />
-          <span>{ticket.tag[0] + " (" + ticket.priority + ")"}</span>
+          {ticket.tag.map((tags, ind) => {
+            return <span id={ind}>{tags}</span>;
+          })}
         </p>
       </div>
     </div>

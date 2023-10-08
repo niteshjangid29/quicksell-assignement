@@ -148,7 +148,7 @@ function App() {
                       }
                       alt="profile"
                     />
-                    <p>{columnHeading}</p>
+                    <h3>{columnHeading}</h3>
                     <span>{len}</span>
                   </div>
                   <div className="section-heading-right">
@@ -158,13 +158,7 @@ function App() {
                 </div>
 
                 {columnTickets.map((ticket, ind) => {
-                  return (
-                    <Card
-                      ticket={ticket}
-                      isUserSort={grouping === "userId"}
-                      key={ind}
-                    />
-                  );
+                  return <Card ticket={ticket} grouping={grouping} key={ind} />;
                 })}
               </div>
             );
