@@ -1,10 +1,9 @@
 import React from "react";
 import "./Card.css";
-import { priorities } from "./data";
-import { statusMap } from "./data";
+import { priorities, statusMap, userMap } from "./data";
 
 const Card = ({ ticket, grouping, users }) => {
-  const userStatus = users.find((user) => user.id === ticket.userId);
+  const user = users.find((user) => user.id === ticket.userId);
 
   return (
     <div className="card">
@@ -12,10 +11,8 @@ const Card = ({ ticket, grouping, users }) => {
         <p>{ticket.id}</p>
         {grouping !== "userId" && (
           <div className="profile">
-            <img src="./images/profile.png" alt="profile" />
-            <span
-              className={userStatus.available ? "user-available" : ""}
-            ></span>
+            <img src={userMap[ticket.userId]} alt="profile" />
+            <span className={user.available ? "user-available" : ""}></span>
           </div>
         )}
       </div>

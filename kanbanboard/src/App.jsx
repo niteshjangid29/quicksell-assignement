@@ -1,7 +1,7 @@
 import "./App.css";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Card from "./components/Card";
-import { statuses, priorities } from "./components/data";
+import { statuses, priorities, statusMap, userMap } from "./components/data";
 import Loader from "./components/Loader";
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [sortedTickets, setSortedTickets] = useState([]);
   const [columnHeaders, setColumnHeaders] = useState([]);
+  const popupRef = useRef(null);
 
   const APIUrl = "https://api.quicksell.co/v1/internal/frontend-assignment";
 
@@ -41,6 +42,12 @@ function App() {
   };
   const handleSortingChange = (e) => {
     setSorting(e.target.value);
+  };
+
+  const handleClickOutside = (e) => {
+    if (popupRef.current && !popupRef.current.contains(e.target)) {
+      setIsVisible(false);
+    }
   };
 
   // *************** sorted and grouped  ***********
@@ -92,6 +99,18 @@ function App() {
     sessionStorage.setItem("sorting", sorting);
   }, [grouping, sorting, tickets, users]);
 
+  useEffect(() => {
+    if (isVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.addEventListener("mousedown", handleClickOutside);
+    };
+  }, [isVisible]);
+
   return (
     <div className="container">
       <div className="navbar">
@@ -106,9 +125,13 @@ function App() {
           <img src="./images/downarrow.png" alt="down arrow" />
         </button>
         {isVisible && (
-          <div className="dropdown">
+          <div
+            className="dropdown"
+            ref={popupRef}
+            // onClick={() => setIsVisible(false)}
+          >
             <div>
-              Grouping{" "}
+              <span>Grouping</span>
               <select value={grouping} onChange={handleGroupingChange}>
                 <option value="status">Status</option>
                 <option value="userId">User</option>
@@ -116,7 +139,7 @@ function App() {
               </select>
             </div>
             <div>
-              Ordering
+              <span>Ordering</span>
               <select value={sorting} onChange={handleSortingChange}>
                 <option value="priority">Priority</option>
                 <option value="title">Title</option>
@@ -140,22 +163,23 @@ function App() {
               <div className="section" key={columnKey}>
                 <div className="section-heading">
                   <div className="section-heading-left">
-                    {/* <img
-                      src={
-                        grouping === "userId"
-                          ? "./images/profile.png"
-                          : column.iconUrl
-                      }
-                      alt="profile"
-                    /> */}
                     <div className="profile">
                       {grouping === "userId" ? (
                         <Fragment>
-                          <img src="./images/profile.png" alt="profile" />
-                          <span className="user-available"></span>
+                          <img src={userMap[column.id]} alt="profile" />
+                          <span
+                            className={column.available ? "user-available" : ""}
+                          ></span>
                         </Fragment>
                       ) : (
-                        <img src={column.iconUrl} alt="profile" />
+                        <img
+                          src={
+                            grouping === "status"
+                              ? statusMap[column.name]
+                              : column.iconUrl
+                          }
+                          alt="profile"
+                        />
                       )}
                     </div>
                     <h3>{columnHeading}</h3>
