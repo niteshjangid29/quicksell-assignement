@@ -23,43 +23,43 @@ export const statuses = [
 ]
 
 export const statusMap = {
-    "Backlog" : "./images/backlog.png",
-    "Todo" : "./images/todo.png",
-    "In progress" : "./images/progress.png",
-    "Done" : "./images/done.png",
-    "Cancelled" : "./images/cancel.png",
+    "Backlog" : "./images/statuses/backlog.png",
+    "Todo" : "./images/statuses/todo.png",
+    "In progress" : "./images/statuses/progress.png",
+    "Done" : "./images/statuses/done.png",
+    "Cancelled" : "./images/statuses/cancel.png",
 }
 
 export const userMap = {
-    "usr-1" : "./images/profile1.jpeg",
-    "usr-2" : "./images/profile2.jpeg",
-    "usr-3" : "./images/profile3.jpeg",
-    "usr-4" : "./images/profile4.jpeg",
-    "usr-5" : "./images/profile5.jpeg",
+    "usr-1" : "./images/users/profile1.jpeg",
+    "usr-2" : "./images/users/profile2.jpeg",
+    "usr-3" : "./images/users/profile3.jpeg",
+    "usr-4" : "./images/users/profile4.jpeg",
+    "usr-5" : "./images/users/profile5.jpeg",
 }
 
 export const priorities = [
     {
         id : 0,
         name : "No Priority",
-        iconUrl : "./images/dot-grey.png"
+        iconUrl : "./images/priorities/dot-grey.png"
     },
     {
         id : 1,
         name : "Urgent",
-        iconUrl : "./images/warning.png"
+        iconUrl : "./images/priorities/warning.png"
     },
     {
         id : 2,
         name : "Low",
-        iconUrl : "./images/low-signal.png"
+        iconUrl : "./images/priorities/low-signal.png"
     },{
         id : 3,
         name : "Medium",
-        iconUrl : "./images/medium-signal.png"
+        iconUrl : "./images/priorities/medium-signal.png"
     },{
         id : 4,
         name : "High",
-        iconUrl : "./images/high-signal.png"
+        iconUrl : "./images/priorities/high-signal.png"
     }
 ]

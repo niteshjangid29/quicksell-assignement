@@ -25,7 +25,7 @@ const Card = ({ ticket, grouping, users }) => {
           <img src={priorities[ticket.priority].iconUrl} alt="menu" />
         )}
         <p>
-          <img src="./images/dot-grey.png" alt="status" />
+          <img src="./images/dot.png" alt="status" />
           {ticket.tag.map((tags, ind) => {
             return <span id={ind}>{tags}</span>;
           })}
